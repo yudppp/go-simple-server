@@ -1,6 +1,7 @@
 parent: null
 package: main
 import:
+- package: github.com/tj/go-config
 - package: github.com/facebookgo/grace
   subpackages:
   - /gracehttp

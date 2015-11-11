@@ -7,7 +7,12 @@ import (
 
 	"github.com/facebookgo/grace/gracehttp"
 	"github.com/gorilla/mux"
+	"github.com/tj/go-config"
 )
+
+type Options struct {
+	Port int `help:"port number"`
+}
 
 type String string
 
@@ -16,7 +21,12 @@ func (s String) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	port := 8080
+	options := Options{
+		Port: 8080,
+	}
+	config.MustResolve(&options)
+
+	port := options.Port
 	s := &http.Server{
 		Addr:    fmt.Sprintf(":%v", port),
 		Handler: newHandler(),
