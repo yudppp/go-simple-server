@@ -36,6 +36,7 @@ func newHandler() http.Handler {
 }
 
 func myHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
+	// Add filtter
 	return func(w http.ResponseWriter, r *http.Request) {
 		fn(w, r)
 	}
